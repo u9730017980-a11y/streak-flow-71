@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CircularProgress } from "./CircularProgress";
+import { Slider } from "@/components/ui/slider";
 
 interface StreakDisplayProps {
   streak: number;
@@ -52,6 +53,19 @@ export const StreakDisplay = ({ streak, workDone, minimum, currentTime }: Streak
                 : 'bg-orange-100 text-orange-800'
             }`}>
               {isGoalMet ? '✓ Goal achieved today' : '⏰ Work towards goal'}
+            </div>
+            
+            <div className="mt-4 space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>Progress</span>
+                <span>{workDone}/{minimum} min</span>
+              </div>
+              <Slider
+                value={[workDone]}
+                max={minimum || 180}
+                disabled
+                className="w-full"
+              />
             </div>
           </div>
         </CardContent>
