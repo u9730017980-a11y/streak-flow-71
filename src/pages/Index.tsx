@@ -32,7 +32,7 @@ const Index = () => {
     }, 5 * 60 * 1000); // 5 minutes
 
     return () => clearInterval(streakInterval);
-  }, [updateStreak]);
+  }, []); // Remove updateStreak dependency to prevent infinite loop
 
   const handleSessionComplete = (duration: number) => {
     addWorkTime(duration);
