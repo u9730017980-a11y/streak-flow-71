@@ -118,6 +118,7 @@ export const PomodoroTimer = ({ onSessionComplete }: PomodoroTimerProps) => {
     setCurrentPhase("idle");
     setTimeLeft(0);
     setSessionData(null);
+    setTotalTime(0);
   };
 
   const formatTime = (seconds: number) => {
