@@ -109,13 +109,15 @@ export const PomodoroTimer = ({ onSessionComplete }: PomodoroTimerProps) => {
     setIsRunning(true);
   };
 
-  const stopSession = () => {
+  const pauseSession = () => {
+    setIsRunning(!isRunning);
+  };
+
+  const resetSession = () => {
     setIsRunning(false);
     setCurrentPhase("idle");
     setTimeLeft(0);
-    if (duration) {
-      onSessionComplete(parseInt(duration));
-    }
+    setSessionData(null);
   };
 
   const formatTime = (seconds: number) => {
@@ -186,13 +188,22 @@ export const PomodoroTimer = ({ onSessionComplete }: PomodoroTimerProps) => {
               </div>
             )}
             
-            <Button 
-              onClick={stopSession} 
-              variant="outline"
-              className="w-full"
-            >
-              Complete Session
-            </Button>
+            <div className="flex gap-2">
+              <Button 
+                onClick={pauseSession} 
+                variant="outline"
+                className="flex-1"
+              >
+                {isRunning ? 'Pause' : 'Resume'}
+              </Button>
+              <Button 
+                onClick={resetSession} 
+                variant="destructive"
+                className="flex-1"
+              >
+                Reset
+              </Button>
+            </div>
           </div>
         )}
       </CardContent>
